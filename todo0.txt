@@ -39,5 +39,6 @@ urlpatterns = [
     path('ap1/v1', include('djoser.urls.authtoken')),
 ]
 
--
+-Initialize database
 python manage.py makemigrations
+python manage.py migrate
