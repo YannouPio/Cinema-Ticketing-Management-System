@@ -1,0 +1,43 @@
+Todo Install
+
+-Virtual environment, create and activate
+-https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/development_environment#using_django_inside_a_python_virtual_environment
+-$ mkvirtualenv my_MS_environment
+
+-Django
+-django-restframework
+-django-cors-headers
+-djoser
+
+-Create Django project
+-Configure the project 
+setting.py
+INSTALLED_APPS = [
+    """Default setting"""
+    'rest_framework',
+    'rest_framework.anthtoken',
+    'corsheaders',
+    'djoser',
+]
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8080',
+]
+MIDDLEWARE = [
+    """......"""
+    'corsheaders.middleware.CorsMiddleware',
+    """......"""
+]
+
+-Add djoser to the urls
+urls.py
+from django.urls import include
+
+urlpatterns = [
+    """......"""
+    # 用户登陆用户注销
+    path('ap1/v1', include('djoser.urls')),
+    path('ap1/v1', include('djoser.urls.authtoken')),
+]
+
+-
+python manage.py makemigrations
