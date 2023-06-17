@@ -42,3 +42,11 @@ urlpatterns = [
 -Initialize database
 python manage.py makemigrations
 python manage.py migrate
+
+-Install
+-node.js
+-VUE
+-bulma
+-bulma-toast
+
+-Set up the libraries
