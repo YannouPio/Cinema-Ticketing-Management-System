@@ -48,5 +48,6 @@ python manage.py migrate
 -VUE
 -bulma
 -bulma-toast
+-axios
 
 -Set up the libraries
