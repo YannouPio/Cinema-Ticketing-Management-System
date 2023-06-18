@@ -15,7 +15,7 @@
 
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-primary"><strong>注册</strong></a>
+              <a href="/sign-up" class="button is-primary"><strong>注册</strong></a>
               <a class="button is-light">登陆</a>
             </div>
           </div>
