@@ -1,37 +1,22 @@
 <template>
   <div>
-    <nav class="navbar is-info" role="navigation" aria-label="main naviation" style="min-height: 5rem;">
-      <div class="navbar-brand">
-        <a class="navbar-item is-size-4" href="/">影院信息管理系统</a>
-      </div>
-
-      <div id="navbar-item" class="navbar-menu">
-        <div class="navbar-start">
-          <a href="/" class="navbar-item">主页</a>
-          <a  href="/about" class="navbar-item">关于</a>
-        </div>
-
-        <div class="navbar-end">
-
-          <div class="navbar-item">
-            <div class="buttons">
-              <a href="/sign-up" class="button is-primary"><strong>注册</strong></a>
-              <a class="button is-light">登陆</a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </nav>
+    <Nav />
     <router-view />
+    <Footer />
 
-    <footer class="'footer'">
-      <p class="has-text-centered">3210421119彭靖强 (c) 2023</p>
-    </footer>
   </div>
 </template>
+<script>
+import Nav from '@/components/Nav.vue'
+import Footer from '@/components/Footer.vue'
+
+export default {
+  name: 'App',
+  components: {
+    Nav, Footer
+  }
+}
+</script>
 
 <style lang="scss">
 @import '../node_modules/bulma/';
