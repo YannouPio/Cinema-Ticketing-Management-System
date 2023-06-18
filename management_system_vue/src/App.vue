@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar" role="navigation" aria-label="main naviation" style="min-height: 5rem;">
+    <nav class="navbar is-info" role="navigation" aria-label="main naviation" style="min-height: 5rem;">
       <div class="navbar-brand">
         <a class="navbar-item is-size-4" href="/">影院信息管理系统</a>
       </div>
