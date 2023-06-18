@@ -7,8 +7,8 @@
 
       <div id="navbar-item" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item">主页</a>
-          <a class="navbar-item">关于</a>
+          <a href="/" class="navbar-item">主页</a>
+          <a  href="/about" class="navbar-item">关于</a>
         </div>
 
         <div class="navbar-end">
