@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import About from '../views/AboutView.vue'
 import SignUp from '../views/SignUp.vue'
 import LogIn from '../views/LogIn.vue'
+import MyAccount from '../views/dashboard/MyAccount.vue'
+import Movies from '../views/Movies.vue'
 
 const routes = [
   {
@@ -25,6 +27,19 @@ const routes = [
     name: 'LogIn',
     component: LogIn
   },
+
+  {
+    path: '/movies',
+    name: 'Movies',
+    component: Movies
+  },
+
+  {
+    path: '/dashboard/my-account',
+    name: 'MyAccount',
+    component: MyAccount
+  },
+
 ]
 
 const router = createRouter({
