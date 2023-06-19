@@ -1,0 +1,5 @@
+-TODO
+
+-Creat the movies page
+-Set up app & databasemodel for categories & movies
+-Get mv from the db
