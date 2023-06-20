@@ -49,7 +49,7 @@
 
                                     <div class="content">
                                         <p>{{ movie.short_description }}</p>
-                                        <a href="#">更多</a>
+                                        <router-link :to="{name: 'Movie', params: {slug: movie.slug}}">更多</router-link>
                                     </div>
 
                                 </div>

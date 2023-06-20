@@ -8,3 +8,7 @@ class MovieListSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'slug', 'short_description')
 
 
+class MovieDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Movie
+        fields = ('id', 'title', 'slug', 'short_description', 'long_description')

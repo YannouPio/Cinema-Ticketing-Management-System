@@ -5,6 +5,7 @@ import SignUp from '../views/SignUp.vue'
 import LogIn from '../views/LogIn.vue'
 import MyAccount from '../views/dashboard/MyAccount.vue'
 import Movies from '../views/Movies.vue'
+import Movie from '../views/Movie.vue'
 
 const routes = [
   {
@@ -32,6 +33,12 @@ const routes = [
     path: '/movies',
     name: 'Movies',
     component: Movies
+  },
+
+  {
+    path: '/movies/:slug',
+    name: 'Movie',
+    component: Movie
   },
 
   {
