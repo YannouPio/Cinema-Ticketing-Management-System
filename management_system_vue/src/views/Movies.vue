@@ -25,7 +25,14 @@
 
                 <div class="column is-10">
                     <div class="columns is-multiline">
-                        <div class="column is-4">
+                        
+                        <!--将数据从后端传输到前端-->
+                        <div 
+                            
+                            class="column is-4"
+                            v-for="movie in movies"
+                            v-bind:key="movie.id"   
+                        >
                             <div class="card">
                                 <div class="card-image">
                                     <figure class="image is-4by3">
@@ -36,12 +43,12 @@
                                 <div class="card-content">
                                     <div class="media">
                                         <div class="media-content">
-                                            <p class="is-size-5">做一个电影售票管理系统</p>
+                                            <p class="is-size-5">{{ movie.title }}</p>
                                         </div>
                                     </div>
 
                                     <div class="content">
-                                        <p>bla bla bla...</p>
+                                        <p>{{ movie.short_description }}</p>
                                         <a href="#">更多</a>
                                     </div>
 
@@ -74,3 +81,29 @@
         </div>
     </section>
 </template>
+
+<script>
+import axios from 'axios'
+
+export default {
+    data() {
+        return {
+            movies: []
+        }
+    },
+
+    mounted() {
+        console.log('mounted')
+
+        axios
+            .get('/api/v1/movies')
+            .then(response => {
+                console.log(response.data)
+
+                this.movies = response.data
+
+            })
+    }
+}
+
+</script>
