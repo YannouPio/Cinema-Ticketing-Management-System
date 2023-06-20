@@ -2,13 +2,14 @@
 
 <nav class="navbar is-info" role="navigation" aria-label="main naviation" style="min-height: 5rem;">
       <div class="navbar-brand">
-        <a class="navbar-item is-size-4" href="/">影院信息管理系统</a>
+        <router-link class="navbar-item is-size-4" to="/">影院信息管理系统</router-link>
       </div>
 
       <div id="navbar-item" class="navbar-menu">
         <div class="navbar-start">
-          <a href="/" class="navbar-item">主页</a>
-          <a  href="/about" class="navbar-item">关于</a>
+          <router-link to="/" class="navbar-item">主页</router-link>
+          <router-link to="/about" class="navbar-item">关于</router-link>
+          <router-link to="/movies" class="navbar-item">电影</router-link>
         </div>
 
         <div class="navbar-end">
