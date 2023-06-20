@@ -14,20 +14,20 @@
       <div class="navbar-end">
 
         <div class="navbar-item">
+
           <div class="buttons">
             <template v-if="$store.state.user.isAuthenticated">
               <router-link to="/dashboard/my-account" class="button is-info">我的账户</router-link>
 
             </template>
             <template v-else>
-              <a href="/sign-up" class="button is-primary"><strong>注册</strong></a>
-              <a href="/log-in" class="button is-light">登陆</a>
+              <router-link to="/sign-up" class="button is-primary"><strong>注册</strong></router-link>
+              <router-link to="/log-in" class="button is-light">登陆</router-link>
             </template>
           </div>
+
         </div>
-
       </div>
-
     </div>
 
   </nav>
