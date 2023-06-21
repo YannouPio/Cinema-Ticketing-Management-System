@@ -8,6 +8,7 @@ Todo Install
 -django-restframework
 -django-cors-headers
 -djoser
+-Pillow
 
 -Create Django project
 -Configure the project 
