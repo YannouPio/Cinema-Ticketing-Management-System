@@ -1,3 +1,4 @@
 -TODO
 -Convert the movies list object to a component
 -Show newest movies on the front page
+-Make 

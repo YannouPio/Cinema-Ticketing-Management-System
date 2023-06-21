@@ -28,7 +28,7 @@
 
                         <!--将数据从后端传输到前端-->
                         <div class="column is-4" v-for="movie in movies" v-bind:key="movie.id">
-                            <Moviesltem :movie="movie"/>
+                            <MoviesItem :movie="movie"/>
                         </div>
                     </div>
 
@@ -59,7 +59,7 @@
 
 <script>
 import axios from 'axios'
-import Moviesltem from '@/components/MoviesItem.vue'
+import MoviesItem from '@/components/MoviesItem.vue'
 export default {
     data() {
         return {
@@ -67,13 +67,13 @@ export default {
         }
     },
     components: {
-        Moviesltem
+        MoviesItem
     },
     mounted() {
         console.log('mounted')
 
         axios
-            .get('/api/v1/movies')
+            .get('movies')
             .then(response => {
                 console.log(response.data)
 
