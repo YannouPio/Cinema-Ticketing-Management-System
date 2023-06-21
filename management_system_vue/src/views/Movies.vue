@@ -25,35 +25,10 @@
 
                 <div class="column is-10">
                     <div class="columns is-multiline">
-                        
+
                         <!--将数据从后端传输到前端-->
-                        <div 
-                            
-                            class="column is-4"
-                            v-for="movie in movies"
-                            v-bind:key="movie.id"   
-                        >
-                            <div class="card">
-                                <div class="card-image">
-                                    <figure class="image is-4by3">
-                                        <img src="http://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                                    </figure>
-                                </div>
-
-                                <div class="card-content">
-                                    <div class="media">
-                                        <div class="media-content">
-                                            <p class="is-size-5">{{ movie.title }}</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="content">
-                                        <p>{{ movie.short_description }}</p>
-                                        <router-link :to="{name: 'Movie', params: {slug: movie.slug}}">更多</router-link>
-                                    </div>
-
-                                </div>
-                            </div>
+                        <div class="column is-4" v-for="movie in movies" v-bind:key="movie.id">
+                            <Moviesltem :movie="movie"/>
                         </div>
                     </div>
 
@@ -84,14 +59,16 @@
 
 <script>
 import axios from 'axios'
-
+import Moviesltem from '@/components/MoviesItem.vue'
 export default {
     data() {
         return {
             movies: []
         }
     },
-
+    components: {
+        Moviesltem
+    },
     mounted() {
         console.log('mounted')
 
