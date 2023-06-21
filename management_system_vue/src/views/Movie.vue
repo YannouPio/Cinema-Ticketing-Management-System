@@ -44,7 +44,7 @@ export default {
         const slug = this.$route.params.slug
 
         axios
-            .get(`/api/v1/movies/${slug}/`)
+            .get(`movies/${slug}/`)
             .then(response => {
                 console.log(response.data)
 
