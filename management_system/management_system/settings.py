@@ -29,6 +29,16 @@ ALLOWED_HOSTS = []
 
 WEBSITE_URL = 'http://127.0.0.1:8000'
 
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': '%d.%m.%Y %H:%M',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
+
 # Application definition
 
 INSTALLED_APPS = [
