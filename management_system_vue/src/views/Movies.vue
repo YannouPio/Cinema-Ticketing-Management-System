@@ -73,7 +73,7 @@ export default {
         console.log('mounted')
 
         axios
-            .get('/api/v1/movies')
+            .get('movies')
             .then(response => {
                 console.log(response.data)
 
