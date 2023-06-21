@@ -25,8 +25,9 @@ export default {
         .then(response => {
           console.log('Logged out')
         })
-
-
+        .catch(error => {
+          console.log(error)
+        })
 
       axios.defaults.headers.common['Authorization'] = ""
 
