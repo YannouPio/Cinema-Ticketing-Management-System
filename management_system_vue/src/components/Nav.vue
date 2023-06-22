@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar is-info" role="navigation" aria-label="main naviation" style="min-height: 5rem;">
     <div class="navbar-brand">
-      <router-link class="navbar-item is-size-4" to="/">影院信息管理系统</router-link>
+      <router-link class="navbar-item is-size-4" to="/">电影管理</router-link>
     </div>
 
     <div id="navbar-item" class="navbar-menu">

@@ -14,12 +14,14 @@
 import axios from 'axios'
 import Nav from '@/components/Nav.vue'
 import Footer from '@/components/Footer.vue'
+import MoviesItem from "@/components/MoviesItem.vue"
 
 export default {
   name: 'App', // 组件名称
   components: {
     Nav, // 在此处注册Nav和Footer组件，这样我们就可以在模板中使用它们
-    Footer
+    Footer,
+    MoviesItem
   },
 
   // 在组件创建之前调用的一个生命周期钩子函数
