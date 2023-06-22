@@ -64,9 +64,15 @@ export default {
                 console.log(response.data)
 
                 this.categories = response.data
-            })
-
-        this.getMovies()
+            });
+        if (this.$route.params.slug) {
+            await axios.get(`/movies/${this.$route.params.slug}`).then(response => {
+                console.log(response.data);
+                this.movies = [response.data];
+            });
+        } else {
+            this.getMovies();
+        }
     },
     methods: {
         setActiveCategory(category) {

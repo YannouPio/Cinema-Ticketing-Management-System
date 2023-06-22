@@ -5,6 +5,15 @@ from rest_framework.decorators import api_view
 # Create your views here.
 from .models import Movie, Category
 from .serializers import MovieListSerializer, MovieDetailSerializer, CategoryListSerializer
+from django.db.models import Q
+
+@api_view(['GET'])
+def search_movies(request):
+    query = request.GET.get('query', '')
+    movies = Movie.objects.filter(Q(title__icontains=query))
+    serializer = MovieListSerializer(movies, many=True)
+
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
