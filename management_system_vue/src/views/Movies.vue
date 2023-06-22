@@ -21,43 +21,21 @@
                             </li>
                             <li v-for="category in categories" v-bind:key="category.id"
                                 @click="setActiveCategory(category)">
-                                <a>{{ category.title }}</a>
+                                <a v-bind:class="{ 'is-active': activeCategory && activeCategory.id === category.id }">
+                                    {{ category.title }}
+                                </a>
                             </li>
-
-
                         </ul>
                     </aside>
                 </div>
 
                 <div class="column is-10">
                     <div class="columns is-multiline">
-
-                        <!--将数据从后端传输到前端-->
                         <div class="column is-4" v-for="movie in movies" v-bind:key="movie.id">
                             <MoviesItem :movie="movie" />
                         </div>
                     </div>
-
-                    <div class="column is-12">
-                        <nav class="pagination">
-                            <a class="pagination-previous">前一页</a>
-                            <a class="pagination-next">下一页</a>
-
-                            <ul class="pagination-list">
-                                <!-- 添加页数 -->
-                                <li>
-                                    <a class="pagination-link is-current">1</a>
-                                </li>
-                                <li>
-                                    <a class="pagination-link">2</a>
-                                </li>
-                            </ul>
-
-                        </nav>
-                    </div>
-
                 </div>
-
             </div>
         </div>
     </section>
@@ -88,25 +66,13 @@ export default {
                 this.categories = response.data
             })
 
-
-        await axios
-            .get('/movies')
-            .then(response => {
-                console.log(response.data)
-
-                this.movies = response.data
-
-            })
         this.getMovies()
     },
     methods: {
         setActiveCategory(category) {
             console.log(category)
             this.activeCategory = category
-
-
             this.getMovies()
-
         },
         getMovies() {
             let url = '/movies/'
@@ -117,14 +83,25 @@ export default {
             axios
                 .get(url)
                 .then(response => {
-                    console.log(response.data)
+                    if (!response.data || !Array.isArray(response.data)) {
+                        console.error('Unexpected response data:', response.data);
+                        return;
+                    }
 
-                    this.movies = response.data
+                    // Add a check for null movies
+                    for (let movie of response.data) {
+                        if (movie === null) {
+                            console.error('Found null movie in response data:', response.data);
+                            return;
+                        }
+                    }
 
+                    this.movies = response.data;
                 })
-
+                .catch(error => {
+                    console.error(error);
+                });
         }
     }
 }
-
 </script>
