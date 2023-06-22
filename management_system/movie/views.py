@@ -1,5 +1,6 @@
 from django.shortcuts import render
-
+from django.http import Http404
+from rest_framework.views import exception_handler
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 # Create your views here.
@@ -48,11 +49,11 @@ def get_frontpage_movies(request):
 
     return Response(serializer.data)
 
-
 @api_view(['GET'])
 def get_movie(request, slug):
-    movie = Movie.objects.get(slug=slug)
-
+    try:
+        movie = Movie.objects.get(slug=slug)
+    except Movie.DoesNotExist:
+        raise Http404("电影未找到")
     serializer = MovieDetailSerializer(movie)
-
     return Response(serializer.data)

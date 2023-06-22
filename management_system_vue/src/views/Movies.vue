@@ -84,38 +84,31 @@ export default {
             this.activeCategory = category
             this.getMovies()
         },
-        getMovies() {
+        async getMovies() {
             let url = '/movies/'
 
             if (this.activeCategory) {
                 url += '?category_id=' + this.activeCategory.id
             }
-            axios
-                .get(url)
-                .then(response => {
-                    if (!response.data || !Array.isArray(response.data)) {
-                        console.error('Unexpected response data:', response.data);
+            try {
+                const response = await axios.get(url);
+                if (!response.data || !Array.isArray(response.data)) {
+                    console.error('Unexpected response data:', response.data);
+                    return;
+                }
+                for (let movie of response.data) {
+                    if (movie === null) {
+                        console.error('Found null movie in response data:', response.data);
                         return;
-
                     }
-
-                    // Add a check for null movies
-                    for (let movie of response.data) {
-                        if (movie === null) {
-                            console.error('Found null movie in response data:', response.data);
-                            return;
-                        }
-                    }
-
-                    this.movies = response.data;
-                    this.searchError = false; // 重置搜索失败的状态
-
-                })
-                .catch(error => {
-                    console.error(error);
-                    this.movies = []; // 清空电影列表
-                    this.searchError = true; // 设置搜索失败的状态为true
-                });
+                }
+                this.movies = response.data;
+                this.searchError = false;
+            } catch (error) {
+                console.error(error);
+                this.movies = [];
+                this.searchError = true;
+            }
         }
     }
 }
