@@ -15,6 +15,14 @@ def get_movies(request):
 
     return Response(serializer.data)
 
+@api_view(['GET'])
+def get_frontpage_movies(request):
+    movies = Movie.objects.all() [0:4]
+
+    serializer = MovieListSerializer(movies, many=True)
+
+    return Response(serializer.data)
+
 
 @api_view(['GET'])
 def get_movie(request, slug):

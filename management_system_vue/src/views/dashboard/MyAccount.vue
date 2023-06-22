@@ -21,12 +21,13 @@ export default {
       console.log('logout')
 
       await axios
-        .post('/api/v1/token/logout/')
+        .post('token/logout/')
         .then(response => {
           console.log('Logged out')
         })
-
-
+        .catch(error => {
+          console.log(error)
+        })
 
       axios.defaults.headers.common['Authorization'] = ""
 
