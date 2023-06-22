@@ -15,43 +15,30 @@
                         <p class="menu-label">分类</p>
 
                         <ul class="menu-list">
-                            <li><a class="is-active">所有</a></li>
-                            <li><a>电影</a></li>
-                            <li><a>演出</a></li>
-                            <li><a>演唱会</a></li>
+                            <li><a v-bind:class="{ 'is-active': !activeCategory }" @click="setActiveCategory(null)">
+                                    所有</a>
+
+                            </li>
+                            <li v-for="category in categories" v-bind:key="category.id"
+                                @click="setActiveCategory(category)">
+                                <a v-bind:class="{ 'is-active': activeCategory && activeCategory.id === category.id }">
+                                    {{ category.title }}
+                                </a>
+                            </li>
                         </ul>
                     </aside>
                 </div>
 
                 <div class="column is-10">
                     <div class="columns is-multiline">
-
-                        <!--将数据从后端传输到前端-->
                         <div class="column is-4" v-for="movie in movies" v-bind:key="movie.id">
-                            <MoviesItem :movie="movie"/>
+                            <MoviesItem :movie="movie" />
                         </div>
                     </div>
-
-                    <div class="column is-12">
-                        <nav class="pagination">
-                            <a class="pagination-previous">前一页</a>
-                            <a class="pagination-next">下一页</a>
-
-                            <ul class="pagination-list">
-                                <!-- 添加页数 -->
-                                <li>
-                                    <a class="pagination-link is-current">1</a>
-                                </li>
-                                <li>
-                                    <a class="pagination-link">2</a>
-                                </li>
-                            </ul>
-
-                        </nav>
+                    <div v-if="movies.length === 0 && !searchError" class="has-text-centered">
+                        <p class="has-text-info">暂无数据</p>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </section>
@@ -63,24 +50,73 @@ import MoviesItem from '@/components/MoviesItem.vue'
 export default {
     data() {
         return {
-            movies: []
+            movies: [],
+            categories: [],
+            activeCategory: null,
+            searchError: false, // 添加搜索失败的状态
         }
     },
     components: {
         MoviesItem
     },
-    mounted() {
+    async mounted() {
         console.log('mounted')
 
-        axios
-            .get('movies')
+        await axios
+            .get('/movies/get_categories/')
             .then(response => {
                 console.log(response.data)
 
-                this.movies = response.data
+                this.categories = response.data
+            });
+        if (this.$route.params.slug) {
+            await axios.get(`/movies/${this.$route.params.slug}`).then(response => {
+                console.log(response.data);
+                this.movies = [response.data];
+            });
+        } else {
+            this.getMovies();
+        }
+    },
+    methods: {
+        setActiveCategory(category) {
+            console.log(category)
+            this.activeCategory = category
+            this.getMovies()
+        },
+        getMovies() {
+            let url = '/movies/'
 
-            })
+            if (this.activeCategory) {
+                url += '?category_id=' + this.activeCategory.id
+            }
+            axios
+                .get(url)
+                .then(response => {
+                    if (!response.data || !Array.isArray(response.data)) {
+                        console.error('Unexpected response data:', response.data);
+                        return;
+
+                    }
+
+                    // Add a check for null movies
+                    for (let movie of response.data) {
+                        if (movie === null) {
+                            console.error('Found null movie in response data:', response.data);
+                            return;
+                        }
+                    }
+
+                    this.movies = response.data;
+                    this.searchError = false; // 重置搜索失败的状态
+
+                })
+                .catch(error => {
+                    console.error(error);
+                    this.movies = []; // 清空电影列表
+                    this.searchError = true; // 设置搜索失败的状态为true
+                });
+        }
     }
 }
-
 </script>
