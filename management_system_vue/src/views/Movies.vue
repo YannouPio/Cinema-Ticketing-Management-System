@@ -15,10 +15,16 @@
                         <p class="menu-label">分类</p>
 
                         <ul class="menu-list">
-                            <li><a class="is-active">所有</a></li>
-                            <li><a>电影</a></li>
-                            <li><a>演出</a></li>
-                            <li><a>演唱会</a></li>
+                            <li><a v-bind:class="{ 'is-active': !activeCategory }" @click="setActiveCategory(null)">
+                                    所有</a>
+
+                            </li>
+                            <li v-for="category in categories" v-bind:key="category.id"
+                                @click="setActiveCategory(category)">
+                                <a>{{ category.title }}</a>
+                            </li>
+
+
                         </ul>
                     </aside>
                 </div>
@@ -28,7 +34,7 @@
 
                         <!--将数据从后端传输到前端-->
                         <div class="column is-4" v-for="movie in movies" v-bind:key="movie.id">
-                            <MoviesItem :movie="movie"/>
+                            <MoviesItem :movie="movie" />
                         </div>
                     </div>
 
@@ -63,23 +69,61 @@ import MoviesItem from '@/components/MoviesItem.vue'
 export default {
     data() {
         return {
-            movies: []
+            movies: [],
+            categories: [],
+            activeCategory: null
         }
     },
     components: {
         MoviesItem
     },
-    mounted() {
+    async mounted() {
         console.log('mounted')
 
-        axios
-            .get('movies')
+        await axios
+            .get('/movies/get_categories/')
+            .then(response => {
+                console.log(response.data)
+
+                this.categories = response.data
+            })
+
+
+        await axios
+            .get('/movies')
             .then(response => {
                 console.log(response.data)
 
                 this.movies = response.data
 
             })
+        this.getMovies()
+    },
+    methods: {
+        setActiveCategory(category) {
+            console.log(category)
+            this.activeCategory = category
+
+
+            this.getMovies()
+
+        },
+        getMovies() {
+            let url = '/movies/'
+
+            if (this.activeCategory) {
+                url += '?category_id=' + this.activeCategory.id
+            }
+            axios
+                .get(url)
+                .then(response => {
+                    console.log(response.data)
+
+                    this.movies = response.data
+
+                })
+
+        }
     }
 }
 
