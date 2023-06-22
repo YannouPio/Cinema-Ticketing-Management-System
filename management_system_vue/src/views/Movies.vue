@@ -35,6 +35,9 @@
                             <MoviesItem :movie="movie" />
                         </div>
                     </div>
+                    <div v-if="movies.length === 0 && !searchError" class="has-text-centered">
+                        <p class="has-text-info">暂无数据</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,7 +52,8 @@ export default {
         return {
             movies: [],
             categories: [],
-            activeCategory: null
+            activeCategory: null,
+            searchError: false, // 添加搜索失败的状态
         }
     },
     components: {
@@ -92,6 +96,7 @@ export default {
                     if (!response.data || !Array.isArray(response.data)) {
                         console.error('Unexpected response data:', response.data);
                         return;
+
                     }
 
                     // Add a check for null movies
@@ -103,9 +108,13 @@ export default {
                     }
 
                     this.movies = response.data;
+                    this.searchError = false; // 重置搜索失败的状态
+
                 })
                 .catch(error => {
                     console.error(error);
+                    this.movies = []; // 清空电影列表
+                    this.searchError = true; // 设置搜索失败的状态为true
                 });
         }
     }
