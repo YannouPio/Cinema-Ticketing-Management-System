@@ -8,6 +8,7 @@ from .models import Movie, Category
 from .serializers import MovieListSerializer, MovieDetailSerializer, CategoryListSerializer
 from django.db.models import Q
 
+
 @api_view(['GET'])
 def search_movies(request):
     query = request.GET.get('query', '')
@@ -35,7 +36,6 @@ def get_movies(request):
     if category_id:
         movies = movies.filter(categories__id=int(category_id))
 
-
     serializer = MovieListSerializer(movies, many=True)
 
     return Response(serializer.data)
@@ -43,11 +43,12 @@ def get_movies(request):
 
 @api_view(['GET'])
 def get_frontpage_movies(request):
-    movies = Movie.objects.all()[0:4]
+    movies = Movie.objects.all()[0:8]
 
     serializer = MovieListSerializer(movies, many=True)
 
     return Response(serializer.data)
+
 
 @api_view(['GET'])
 def get_movie(request, slug):

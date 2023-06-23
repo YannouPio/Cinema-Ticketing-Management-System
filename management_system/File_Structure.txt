@@ -1,0 +1,47 @@
+.
+├── File_Structure.txt
+├── db.sqlite3
+├── manage.py
+├── management_system
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-310.pyc
+│   │   ├── settings.cpython-310.pyc
+│   │   ├── urls.cpython-310.pyc
+│   │   └── wsgi.cpython-310.pyc
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── media
+│   └── uploads
+│       └── 星球大战.jpg
+└── movie
+    ├── __init__.py
+    ├── __pycache__
+    │   ├── __init__.cpython-310.pyc
+    │   ├── admin.cpython-310.pyc
+    │   ├── apps.cpython-310.pyc
+    │   ├── models.cpython-310.pyc
+    │   ├── serializers.cpython-310.pyc
+    │   ├── urls.cpython-310.pyc
+    │   └── views.cpython-310.pyc
+    ├── admin.py
+    ├── apps.py
+    ├── migrations
+    │   ├── 0001_initial.py
+    │   ├── 0002_movie.py
+    │   ├── 0003_movie_image.py
+    │   ├── __init__.py
+    │   └── __pycache__
+    │       ├── 0001_initial.cpython-310.pyc
+    │       ├── 0002_movie.cpython-310.pyc
+    │       ├── 0003_movie_image.cpython-310.pyc
+    │       └── __init__.cpython-310.pyc
+    ├── models.py
+    ├── serializers.py
+    ├── tests.py
+    ├── urls.py
+    └── views.py
+
+8 directories, 36 files
