@@ -1,0 +1,37 @@
+.
+├── File_Structure.txt
+├── README.md
+├── babel.config.js
+├── jsconfig.json
+├── package-lock.json
+├── package.json
+├── node_modules
+├── public
+│   ├── favicon.ico
+│   └── index.html
+├── src
+│   ├── App.vue
+│   ├── assets
+│   │   └── logo.png
+│   ├── components
+│   │   ├── Footer.vue
+│   │   ├── MoviesItem.vue
+│   │   └── Nav.vue
+│   ├── main.js
+│   ├── router
+│   │   └── index.js
+│   ├── store
+│   │   └── index.js
+│   └── views
+│       ├── AboutView.vue
+│       ├── HomeView.vue
+│       ├── LogIn.vue
+│       ├── Movie.vue
+│       ├── Movies.vue
+│       ├── SignUp.vue
+│       └── dashboard
+│           ├── CreatMovie.vue
+│           └── MyAccount.vue
+└── vue.config.js
+
+8 directories, 25 files
